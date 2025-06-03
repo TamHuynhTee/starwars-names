@@ -1,4 +1,4 @@
-export default [
+[
   "4-LOM",
   "Aayla Secura",
   "Admiral Ackbar",
@@ -92,5 +92,5 @@ export default [
   "Yoda",
   "Zam Wesell",
   "Zayne Carrick",
-  "Zuckuss",
-];
+  "Zuckuss"
+]
