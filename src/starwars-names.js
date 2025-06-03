@@ -83,6 +83,7 @@ export default [
   "Sebulba",
   "Shaak Ti",
   "Shmi Skywalker",
+  "David Hasselhoff",
   "Talon Karrde",
   "Ulic Qel-Droma",
   "Visas Marr",
