@@ -1,7 +1,7 @@
-var uniqueRandomArray = from("unique-random-array");
-var starWarsNames = require("./star-wars-names.json");
+import uniqueRandomArray from "unique-random-array";
+import starWarsNames from "./starwars-names.js";
 
-module.exports = {
+export default {
   all: starWarsNames,
   random: uniqueRandomArray(starWarsNames),
 };
