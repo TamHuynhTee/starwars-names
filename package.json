@@ -6,8 +6,7 @@
   "scripts": {
     "test": "mocha src/tests/*.test.js",
     "test:watch": "mocha src/tests/*.test.js -w",
-    "build": "npm run test && node esbuild.cjs",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "build": "npm run test && node esbuild.cjs"
   },
   "repository": {
     "type": "git",
