@@ -3,7 +3,7 @@ name: Test
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   test:
@@ -15,5 +15,5 @@ jobs:
           node-version: 16
 
       - run: npm ci
-      - run: npm run test
+      - run: npm run build
       - run: rm -rf node_modules

@@ -4,8 +4,9 @@
   "description": "Get random Star Wars names (a clone of [starwars-names](https://github.com/kentcdodds/starwars-names) © Kent C. Dodds)",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha src/index.test.js",
-    "test:watch": "mocha src/index.test.js -w",
+    "test": "mocha src/tests/*.test.js",
+    "test:watch": "mocha src/tests/*.test.js -w",
+    "build": "npm run test && node esbuild.cjs",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -27,7 +28,10 @@
     "unique-random-array": "1.0.0"
   },
   "devDependencies": {
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "11.0.3",
     "chai": "3.2.0",
+    "esbuild": "0.25.5",
     "mocha": "2.2.5",
     "semantic-release": "^24.2.5"
   }
