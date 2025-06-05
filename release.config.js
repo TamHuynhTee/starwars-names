@@ -5,7 +5,15 @@ const config = {
     "@semantic-release/release-notes-generator",
     "@semantic-release/git",
     "@semantic-release/github",
-    "@semantic-release/npm",
+    [
+      "@semantic-release/npm",
+      {
+        npmPublish: true,
+        tarballDir: "dist",
+        pkgRoot: ".",
+        tag: "latest",
+      },
+    ],
   ],
 };
 

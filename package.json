@@ -1,6 +1,6 @@
 {
   "name": "david-starwars-names",
-  "version": "0.0.0-semantically-released",
+  "version": "2.0.0",
   "description": "Get random Star Wars names (a clone of [starwars-names](https://github.com/kentcdodds/starwars-names) © Kent C. Dodds)",
   "main": "src/index.js",
   "unpkg": "dist/index.min.js",
