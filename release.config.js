@@ -15,7 +15,7 @@ module.exports = {
     [
       "@semantic-release/exec",
       {
-        successCmd: "scripts/generate-sri.sh ${nextRelease.version}",
+        prepareCmd: "scripts/generate-sri.sh ${nextRelease.version}",
       },
     ],
     // Uncomment if you want to commit version bump to package.json
@@ -46,6 +46,9 @@ module.exports = {
     const sriSnippet = fs.existsSync("sri-snippet.txt")
       ? fs.readFileSync("sri-snippet.txt", "utf8").trim()
       : "";
+
+    console.log("--- SRI FILE CONTENT > sri-snippet.txt ---");
+    console.log(sriSnippet);
 
     return `${defaultNotes}\n\n---\n\n🔒 **Subresource Integrity Snippet**\n\n\`\`\`html\n${sriSnippet}\n\`\`\``;
   },
