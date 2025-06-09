@@ -6,7 +6,7 @@ build({
   sourcemap: true,
   platform: "node",
   entryPoints: ["src/index.js"],
-  outfile: "dist/index.min.js",
+  outfile: "dist/index.js",
   target: "node16",
 }).catch((e) => {
   console.error(e);
