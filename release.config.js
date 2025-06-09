@@ -10,24 +10,7 @@ module.exports = {
         preset: "conventionalcommits",
       },
     ],
-    [
-      "@semantic-release/release-notes-generator",
-      {
-        // You could pass config here if needed
-        generateNotes: async (pluginConfig, context) => {
-          const defaultNotes = await notesGenerator.generateNotes(
-            pluginConfig,
-            context
-          );
-
-          const sriSnippet = fs.existsSync("sri-snippet.txt")
-            ? fs.readFileSync("sri-snippet.txt", "utf8").trim()
-            : "";
-
-          return `${defaultNotes}\n\n---\n\n🔒 **Subresource Integrity Snippet**\n\n\`\`\`html\n${sriSnippet}\n\`\`\``;
-        },
-      },
-    ],
+    "@semantic-release/release-notes-generator",
     "@semantic-release/npm",
     [
       "@semantic-release/exec",
@@ -35,12 +18,12 @@ module.exports = {
         successCmd: "scripts/generate-sri.sh ${nextRelease.version}",
       },
     ],
+    // Uncomment if you want to commit version bump to package.json
     // [
     //   "@semantic-release/git",
     //   {
-    //     assets: ["package.json", "package-lock.json"], // or just "package.json"
-    //     message:
-    //       "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+    //     assets: ["package.json", "package-lock.json"],
+    //     message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
     //   },
     // ],
     [
@@ -51,4 +34,19 @@ module.exports = {
       },
     ],
   ],
+  /**
+   * ✅ This must be a top-level key — NOT passed inside plugins[]
+   */
+  generateNotes: async (pluginConfig, context) => {
+    const defaultNotes = await notesGenerator.generateNotes(
+      pluginConfig,
+      context
+    );
+
+    const sriSnippet = fs.existsSync("sri-snippet.txt")
+      ? fs.readFileSync("sri-snippet.txt", "utf8").trim()
+      : "";
+
+    return `${defaultNotes}\n\n---\n\n🔒 **Subresource Integrity Snippet**\n\n\`\`\`html\n${sriSnippet}\n\`\`\``;
+  },
 };
