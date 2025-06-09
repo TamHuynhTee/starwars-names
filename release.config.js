@@ -1,4 +1,5 @@
 const fs = require("fs");
+const notesGenerator = require("@semantic-release/release-notes-generator");
 
 module.exports = {
   branches: ["master"],
@@ -7,10 +8,26 @@ module.exports = {
       "@semantic-release/commit-analyzer",
       {
         preset: "conventionalcommits",
-        releaseRules: [],
       },
     ],
-    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        // You could pass config here if needed
+        generateNotes: async (pluginConfig, context) => {
+          const defaultNotes = await notesGenerator.generateNotes(
+            pluginConfig,
+            context
+          );
+
+          const sriSnippet = fs.existsSync("sri-snippet.txt")
+            ? fs.readFileSync("sri-snippet.txt", "utf8").trim()
+            : "";
+
+          return `${defaultNotes}\n\n---\n\n🔒 **Subresource Integrity Snippet**\n\n\`\`\`html\n${sriSnippet}\n\`\`\``;
+        },
+      },
+    ],
     "@semantic-release/npm",
     [
       "@semantic-release/exec",
@@ -26,17 +43,4 @@ module.exports = {
       },
     ],
   ],
-  generateNotes: async (pluginConfig, context) => {
-    const defaultNotes =
-      await require("@semantic-release/release-notes-generator").generateNotes(
-        pluginConfig,
-        context
-      );
-
-    const sriSnippet = fs.existsSync("sri-snippet.txt")
-      ? fs.readFileSync("sri-snippet.txt", "utf8").trim()
-      : "";
-
-    return `${defaultNotes}\n\n---\n\n🔒 **Subresource Integrity Snippet**\n\n\`\`\`html\n${sriSnippet}\n\`\`\``;
-  },
 };
