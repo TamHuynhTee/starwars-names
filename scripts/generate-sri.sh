@@ -13,6 +13,8 @@ HASH=$(curl -sSL --compressed "$URL" | openssl dgst -sha384 -binary | openssl ba
 
 SNIPPET="<script src=\"https://unpkg.com/${PACKAGE_NAME}@${VERSION}/${FILE}\" integrity=\"sha384-${HASH}\" crossorigin=\"anonymous\"></script>"
 
+echo "Release token $GH_RELEASE_TOKEN"
+
 # Get the release ID from GitHub API
 RELEASE_ID=$(curl -s -H "Authorization: Bearer $GH_RELEASE_TOKEN" \
   https://api.github.com/repos/${REPO}/releases/tags/v${VERSION} \
