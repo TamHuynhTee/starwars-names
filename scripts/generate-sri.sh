@@ -26,16 +26,18 @@ CURRENT_BODY=$(curl -s -H "Authorization: Bearer $GH_RELEASE_TOKEN" \
   | jq -r '.body')
 
 # Append SRI snippet
-UPDATED_BODY=`
-${CURRENT_BODY}
+UPDATED_BODY=$(cat <<EOF
+  ${CURRENT_BODY}
 
----
-🔒 **Subresource Integrity Snippet**
+  ---
+  🔒 **Subresource Integrity Snippet**
 
-\`\`\`html
-${SNIPPET}
-\`\`\`
-`
+  ```html
+  ${SNIPPET}
+  ```
+
+  EOF
+)
 
 # Patch the release body
 curl -s -X PATCH \
