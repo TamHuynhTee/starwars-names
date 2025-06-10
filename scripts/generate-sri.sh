@@ -11,7 +11,14 @@ URL="https://unpkg.com/${PACKAGE_NAME}@${VERSION}/${FILE}"
 echo "Fetching: $URL"
 HASH=$(curl -sSL --compressed "$URL" | openssl dgst -sha384 -binary | openssl base64 -A)
 
-SNIPPET="<script src=\"https://unpkg.com/${PACKAGE_NAME}@${VERSION}/${FILE}\" integrity=\"sha384-${HASH}\" crossorigin=\"anonymous\"></script>"
+SNIPPET=$(cat <<EOF
+<script 
+  src="https://unpkg.com/${PACKAGE_NAME}@${VERSION}/${FILE}"
+  integrity="sha384-${HASH}"
+  crossorigin="anonymous"
+></script>
+EOF
+)
 
 echo "Release token $GH_RELEASE_TOKEN"
 
