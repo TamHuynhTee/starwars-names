@@ -20,8 +20,6 @@ SNIPPET=$(cat <<EOF
 EOF
 )
 
-echo "Release token $GH_RELEASE_TOKEN"
-
 # Get the release ID from GitHub API
 RELEASE_ID=$(curl -s -H "Authorization: Bearer $GH_RELEASE_TOKEN" \
   https://api.github.com/repos/${REPO}/releases/tags/v${VERSION} \
