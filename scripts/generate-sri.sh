@@ -36,7 +36,7 @@ UPDATED_BODY=$(cat <<EOF
   ${SNIPPET}
   ```
 
-  EOF
+EOF
 )
 
 # Patch the release body
