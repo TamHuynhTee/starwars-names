@@ -1,7 +1,12 @@
 module.exports = {
   branches: ["master"],
   plugins: [
-    "@semantic-release/commit-analyzer",
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        preset: "conventionalcommits",
+      },
+    ],
     "@semantic-release/release-notes-generator",
     "@semantic-release/npm",
     // Uncomment if you want to commit version bump to package.json
