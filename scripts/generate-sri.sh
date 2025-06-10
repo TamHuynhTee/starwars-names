@@ -27,15 +27,13 @@ CURRENT_BODY=$(curl -s -H "Authorization: Bearer $GH_RELEASE_TOKEN" \
 
 # Append SRI snippet
 UPDATED_BODY=$(cat <<EOF
-  ${CURRENT_BODY}
+${CURRENT_BODY}
 
-  ---
-  🔒 **Subresource Integrity Snippet**
+🔒 **Subresource Integrity Snippet**
 
-  ```html
-  ${SNIPPET}
-  ```
-
+\`\`\`html
+${SNIPPET}
+\`\`\`
 EOF
 )
 
